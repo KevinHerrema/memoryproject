@@ -23,6 +23,7 @@ namespace memory
         public MainWindow()
         {
             InitializeComponent();
+            int getallen = 0;
         }
     }
 }
