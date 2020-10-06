@@ -23,6 +23,7 @@ namespace memory
         public MainWindow()
         {
             InitializeComponent();
+            int player1 = 5;
         }
     }
 }
