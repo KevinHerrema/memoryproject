@@ -1,0 +1,5 @@
+C:\Users\robin\School\memory\memory\obj\Debug\memory.csprojAssemblyReference.cache
+C:\Users\robin\School\memory\memory\obj\Debug\MainWindow.g.cs
+C:\Users\robin\School\memory\memory\obj\Debug\App.g.cs
+C:\Users\robin\School\memory\memory\obj\Debug\memory_MarkupCompile.cache
+C:\Users\robin\School\memory\memory\obj\Debug\memory_MarkupCompile.lref
