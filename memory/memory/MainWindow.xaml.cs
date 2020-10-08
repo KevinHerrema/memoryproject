@@ -26,4 +26,16 @@ namespace memory
             int getallen = 0;
         }
     }
+
+    private void AddLabel();
+    {
+    Label title = new Label();
+    title.Content = "Memory";
+    title.FontSize = 40;
+
+        Grid.Setcolumn(title, 1);
+    }
+
+        
+    
 }
