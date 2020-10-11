@@ -23,7 +23,8 @@ namespace memory
         private const int Rows = 4;
         private const int Cols = 4;
         Random r = new Random();
-       
+        private static Random rng = new Random();
+
         public MainWindow()
         {
             InitializeComponent();
@@ -76,46 +77,23 @@ namespace memory
                 images.Add(new BitmapImage (path));
                 
             }
-            int nummer;
-            int[] random = new int[8];
-            for (int i = 0; i < 8; i++)
-            {
-                nummer = r.Next(9);
 
-                for (int b = 0; b < 8; b++)
-                {
-                    while (random.Contains(nummer) == true)
-                    {
-                        nummer = r.Next(9);
-                        b = 0;
-                    }
-                }
-                random[i] = nummer;
-            }
             int nummer1;
-            int[] random1 = new int[8];
-            for (int i = 0; i < 8; i++)
+            int[] random1 = new int[16];
+            for (int i = 0; i < 16; i++)
             {
-                nummer1 = r.Next(9);
+                nummer1 = r.Next(17);
 
-                for (int b = 0; b < 8; b++)
+                for (int b = 0; b < 16; b++)
                 {
                     while (random1.Contains(nummer1) == true)
                     {
-                        nummer1 = r.Next(9);
+                        nummer1 = r.Next(17);
                         b = 0;
                     }
                 }
                 random1[i] = nummer1;
             }
-            imagelist.Add(images[random[0] - 1]);
-            imagelist.Add(images[random[1] - 1]);
-            imagelist.Add(images[random[2] - 1]);
-            imagelist.Add(images[random[3] - 1]);
-            imagelist.Add(images[random[4] - 1]);
-            imagelist.Add(images[random[5] - 1]);
-            imagelist.Add(images[random[6] - 1]);
-            imagelist.Add(images[random[7] - 1]);
             imagelist.Add(images[random1[0] - 1]);
             imagelist.Add(images[random1[1] - 1]);
             imagelist.Add(images[random1[2] - 1]);
@@ -124,6 +102,14 @@ namespace memory
             imagelist.Add(images[random1[5] - 1]);
             imagelist.Add(images[random1[6] - 1]);
             imagelist.Add(images[random1[7] - 1]);
+            imagelist.Add(images[random1[8] - 1]);
+            imagelist.Add(images[random1[9] - 1]);
+            imagelist.Add(images[random1[10] - 1]);
+            imagelist.Add(images[random1[11] - 1]);
+            imagelist.Add(images[random1[12] - 1]);
+            imagelist.Add(images[random1[13] - 1]);
+            imagelist.Add(images[random1[14] - 1]);
+            imagelist.Add(images[random1[15] - 1]);
             return imagelist;
         }
        
@@ -133,8 +119,9 @@ namespace memory
             ImageSource front = (ImageSource)card.Tag;
             card.Source = front;
         }
-
         
+
+
 
 
 
