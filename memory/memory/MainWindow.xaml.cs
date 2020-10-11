@@ -22,12 +22,13 @@ namespace memory
     {
         private const int Rows = 4;
         private const int Cols = 4;
-
+        Random r = new Random();
+       
         public MainWindow()
         {
             InitializeComponent();
             InitializeGameGrid(Rows, Cols);
-            
+           
             addplaatjes(Rows, Cols);
         }
         private void InitializeGameGrid(int Rows, int Cols)
@@ -41,7 +42,8 @@ namespace memory
                 GameGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
         }
-        
+
+
         private void addplaatjes(int rows, int cols)
         {
             List<ImageSource> plaatjes = plaatjeslist();
@@ -53,26 +55,76 @@ namespace memory
                     Uri path = new Uri("plaatjes/kaart.png", UriKind.Relative);
                     backgroundimage.Source = new BitmapImage(path);
                     backgroundimage.Tag = plaatjes.First();
+                    
                     plaatjes.RemoveAt(0);
                     backgroundimage.MouseDown += new MouseButtonEventHandler(cardflip);
-                    Grid.SetColumn(backgroundimage, a);
-                    Grid.SetRow(backgroundimage, b);
+                    Grid.SetColumn(backgroundimage, b);
+                    Grid.SetRow(backgroundimage, a);
                     GameGrid.Children.Add(backgroundimage);
-
+                    
 
                 }
-            }
-        }
+            } 
+        } 
         private List<ImageSource> plaatjeslist()
-        {
-            List<ImageSource> images = new List<ImageSource>();
+        { List<ImageSource> images = new List<ImageSource>();
+            List<ImageSource> imagelist = new List<ImageSource>();
             for(int i = 0; i < (Rows * Cols) ; i++)
             {
                 int nr = i % 8 + 1;
                 Uri path = new Uri("plaatjes/" + nr + ".png", UriKind.Relative);
-                images.Add(new BitmapImage(path));
+                images.Add(new BitmapImage (path));
+                
             }
-            return images;
+            int nummer;
+            int[] random = new int[8];
+            for (int i = 0; i < 8; i++)
+            {
+                nummer = r.Next(9);
+
+                for (int b = 0; b < 8; b++)
+                {
+                    while (random.Contains(nummer) == true)
+                    {
+                        nummer = r.Next(9);
+                        b = 0;
+                    }
+                }
+                random[i] = nummer;
+            }
+            int nummer1;
+            int[] random1 = new int[8];
+            for (int i = 0; i < 8; i++)
+            {
+                nummer1 = r.Next(9);
+
+                for (int b = 0; b < 8; b++)
+                {
+                    while (random1.Contains(nummer1) == true)
+                    {
+                        nummer1 = r.Next(9);
+                        b = 0;
+                    }
+                }
+                random1[i] = nummer1;
+            }
+            imagelist.Add(images[random[0] - 1]);
+            imagelist.Add(images[random[1] - 1]);
+            imagelist.Add(images[random[2] - 1]);
+            imagelist.Add(images[random[3] - 1]);
+            imagelist.Add(images[random[4] - 1]);
+            imagelist.Add(images[random[5] - 1]);
+            imagelist.Add(images[random[6] - 1]);
+            imagelist.Add(images[random[7] - 1]);
+            imagelist.Add(images[random1[0] - 1]);
+            imagelist.Add(images[random1[1] - 1]);
+            imagelist.Add(images[random1[2] - 1]);
+            imagelist.Add(images[random1[3] - 1]);
+            imagelist.Add(images[random1[4] - 1]);
+            imagelist.Add(images[random1[5] - 1]);
+            imagelist.Add(images[random1[6] - 1]);
+            imagelist.Add(images[random1[7] - 1]);
+            return imagelist;
         }
        
         private void cardflip(object sender, MouseButtonEventArgs e)
@@ -81,6 +133,11 @@ namespace memory
             ImageSource front = (ImageSource)card.Tag;
             card.Source = front;
         }
+
+        
+
+
+
 
 
     }
