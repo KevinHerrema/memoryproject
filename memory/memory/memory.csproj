@@ -107,5 +107,27 @@
   <ItemGroup>
     <Resource Include="plaatjes\kaart.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Achterkant.tif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Kaart_1.tif" />
+    <Resource Include="images\Kaart_10.tif" />
+    <Resource Include="images\Kaart_11.tif" />
+    <Resource Include="images\Kaart_12.tif" />
+    <Resource Include="images\Kaart_13.tif" />
+    <Resource Include="images\Kaart_14.tif" />
+    <Resource Include="images\Kaart_15.tif" />
+    <Resource Include="images\Kaart_16.tif" />
+    <Resource Include="images\Kaart_17.tif" />
+    <Resource Include="images\Kaart_2.tif" />
+    <Resource Include="images\Kaart_3.tif" />
+    <Resource Include="images\Kaart_4.tif" />
+    <Resource Include="images\Kaart_5.tif" />
+    <Resource Include="images\Kaart_6.tif" />
+    <Resource Include="images\Kaart_7.tif" />
+    <Resource Include="images\Kaart_8.tif" />
+    <Resource Include="images\Kaart_9.tif" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

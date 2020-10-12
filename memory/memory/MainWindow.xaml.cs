@@ -24,7 +24,9 @@ namespace memory
         private const int Cols = 4;
         Random r = new Random();
         private static Random rng = new Random();
-
+        int clicks = 0;
+        ImageSource front1;
+        ImageSource front2;
         public MainWindow()
         {
             InitializeComponent();
@@ -53,10 +55,9 @@ namespace memory
                 for(int b =0; b < cols; b++)
                 {
                     Image backgroundimage = new Image();
-                    Uri path = new Uri("plaatjes/kaart.png", UriKind.Relative);
+                    Uri path = new Uri("images/achterkant.tif", UriKind.Relative);
                     backgroundimage.Source = new BitmapImage(path);
                     backgroundimage.Tag = plaatjes.First();
-                    
                     plaatjes.RemoveAt(0);
                     backgroundimage.MouseDown += new MouseButtonEventHandler(cardflip);
                     Grid.SetColumn(backgroundimage, b);
@@ -73,7 +74,7 @@ namespace memory
             for(int i = 0; i < (Rows * Cols) ; i++)
             {
                 int nr = i % 8 + 1;
-                Uri path = new Uri("plaatjes/" + nr + ".png", UriKind.Relative);
+                Uri path = new Uri("images/kaart_" + nr + ".tif", UriKind.Relative);
                 images.Add(new BitmapImage (path));
                 
             }
@@ -115,10 +116,32 @@ namespace memory
        
         private void cardflip(object sender, MouseButtonEventArgs e)
         {
+            int test = 0;
             Image card = (Image)sender;
             ImageSource front = (ImageSource)card.Tag;
             card.Source = front;
+            clicks = clicks + 1;
+            if(clicks == 1)
+            {
+                front1 = front;
+            }
+            if(clicks == 2)
+            {
+                front2 = front;
+            }
+            if(clicks == 3)
+            {
+                if( front1 == front2)
+                {
+                    test = test + 1;
+                }
+                else
+                {
+                    test = test + 2;
+                }
+            }
         }
+
         
 
 
