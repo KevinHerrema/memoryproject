@@ -6,7 +6,20 @@
         xmlns:local="clr-namespace:memory"
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="800">
-    <Grid x:Name="GameGrid">
-        
+
+    <Grid x:Name="MenuGrid">
+        <Grid.Background>
+            <ImageBrush ImageSource="/Assets/Back.png" Stretch="UniformToFill"/>
+        </Grid.Background>
+        <Grid x:Name="GameGrid"/>
+        <Button
+          x:Name = "Button1" Content = "Klik om te starten" Click="Button1_Click"
+         HorizontalAlignment = "Left" Margin = "280,184,0,0"
+         VerticalAlignment = "Top" Width = "200"/>
+
+        <Button x:Name ="Button2" Click="Button2_Click"  Width="100" Margin="0,0,692,352">
+            <Image Source="Assets/Start.png" Height="72" Width="96" />
+        </Button>
+
     </Grid>
 </Window>

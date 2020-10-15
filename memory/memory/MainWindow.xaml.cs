@@ -10,6 +10,7 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Media.TextFormatting;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
@@ -23,15 +24,67 @@ namespace memory
         private const int Rows = 4;
         private const int Cols = 4;
 
+
         public MainWindow()
         {
             InitializeComponent();
+            InitializeMenuGrid();
             InitializeGameGrid(Rows, Cols);
+
+
+            GameGrid.Visibility = Visibility.Hidden;
+
+        }
+
+        
+
+        private void Button1_Click(object sender, RoutedEventArgs e)
+        {
             
             addplaatjes(Rows, Cols);
+            Button1.Visibility = Visibility.Hidden;
+            Button2.Visibility = Visibility.Visible;
+            GameGrid.Visibility = Visibility.Visible;
+            
+            //voer hier verdere extra's in zoals de timer zal ik later in goede button toevoegen
         }
+
+        private void Button2_Click(object sender, RoutedEventArgs e)
+        {
+            addplaatjes(Rows, Cols);           
+            Button2.Visibility = Visibility.Hidden;
+            Button1.Visibility = Visibility.Visible;
+            GameGrid.Visibility = Visibility.Hidden;
+
+
+            //Proef versie Button + plaatje tijdelijk als stop button gebruikt
+        }
+        private void InitializeMenuGrid()
+        {
+            //heeft nog geen toevoeging , moet nog gesorteerd worden
+            
+        }
+
+       
+
+
+
+
+
+        private List<ImageSource> Assetlist()
+        {
+            List<ImageSource> images = new List<ImageSource>();
+            Uri path = new Uri("Assets/Back.png", UriKind.Relative);
+            images.Add(new BitmapImage(path));
+            return images;
+           //zonder borders
+        }
+
+            
+
         private void InitializeGameGrid(int Rows, int Cols)
         {
+            
             for(int i = 0; i < Rows; i++)
             {
                 GameGrid.RowDefinitions.Add(new RowDefinition());
@@ -40,6 +93,7 @@ namespace memory
             {
                 GameGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
+            
         }
         
         private void addplaatjes(int rows, int cols)
@@ -85,7 +139,7 @@ namespace memory
 
     }
 
-    
+   
 
         
     

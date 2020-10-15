@@ -107,5 +107,11 @@
   <ItemGroup>
     <Resource Include="plaatjes\kaart.png" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Back.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Start.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
