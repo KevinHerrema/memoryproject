@@ -19,20 +19,25 @@ namespace memory
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {
+    {   
         private const int Rows = 4;
         private const int Cols = 4;
         Random r = new Random();
         private static Random rng = new Random();
         int clicks = 0;
-        ImageSource front1;
-        ImageSource front2;
+        int front1;
+        int front2;
+        int[] random1 = new int[16];
+        List<ImageSource> plaatjes;
+        List<int> kaartnmr;
         public MainWindow()
         {
             InitializeComponent();
             InitializeGameGrid(Rows, Cols);
-           
+            plaatjes = plaatjeslist();
             addplaatjes(Rows, Cols);
+            kaartnmr = checkpositie();
+            random1 = randomnr();
         }
         private void InitializeGameGrid(int Rows, int Cols)
         {
@@ -49,7 +54,8 @@ namespace memory
 
         private void addplaatjes(int rows, int cols)
         {
-            List<ImageSource> plaatjes = plaatjeslist();
+            List<int> locatie = checkpositie();
+            int c = 0; 
             for(int a = 0; a < rows; a++)
             {
                 for(int b =0; b < cols; b++)
@@ -57,8 +63,9 @@ namespace memory
                     Image backgroundimage = new Image();
                     Uri path = new Uri("images/achterkant.tif", UriKind.Relative);
                     backgroundimage.Source = new BitmapImage(path);
-                    backgroundimage.Tag = plaatjes.First();
-                    plaatjes.RemoveAt(0);
+                    backgroundimage.Tag = c;
+                    c++;
+                    locatie.RemoveAt(0);
                     backgroundimage.MouseDown += new MouseButtonEventHandler(cardflip);
                     Grid.SetColumn(backgroundimage, b);
                     Grid.SetRow(backgroundimage, a);
@@ -70,31 +77,19 @@ namespace memory
         } 
         private List<ImageSource> plaatjeslist()
         { List<ImageSource> images = new List<ImageSource>();
-            List<ImageSource> imagelist = new List<ImageSource>();
-            for(int i = 0; i < (Rows * Cols) ; i++)
+          List<ImageSource> imagelist = new List<ImageSource>();
+
+            
+            for (int i = 0; i < (Rows * Cols) ; i++)
             {
                 int nr = i % 8 + 1;
                 Uri path = new Uri("images/kaart_" + nr + ".tif", UriKind.Relative);
-                images.Add(new BitmapImage (path));
+                images.Add(new BitmapImage(path));
                 
             }
 
-            int nummer1;
-            int[] random1 = new int[16];
-            for (int i = 0; i < 16; i++)
-            {
-                nummer1 = r.Next(17);
 
-                for (int b = 0; b < 16; b++)
-                {
-                    while (random1.Contains(nummer1) == true)
-                    {
-                        nummer1 = r.Next(17);
-                        b = 0;
-                    }
-                }
-                random1[i] = nummer1;
-            }
+
             imagelist.Add(images[random1[0] - 1]);
             imagelist.Add(images[random1[1] - 1]);
             imagelist.Add(images[random1[2] - 1]);
@@ -111,38 +106,97 @@ namespace memory
             imagelist.Add(images[random1[13] - 1]);
             imagelist.Add(images[random1[14] - 1]);
             imagelist.Add(images[random1[15] - 1]);
+
             return imagelist;
+            
+            
         }
+        private List<int> checkpositie()
+        {   List<int> nummerlijst = new List<int>();
+            List<int> positie = new List<int>();
+            
+            for (int i = 0; i < (Rows * Cols); i++)
+            {
+                int nr = i % 8 + 1;
+                nummerlijst.Add(nr);
+            }
+
+            positie.Add(nummerlijst[random1[0] - 1]);
+            positie.Add(nummerlijst[random1[1] - 1]);
+            positie.Add(nummerlijst[random1[2] - 1]);
+            positie.Add(nummerlijst[random1[3] - 1]);
+            positie.Add(nummerlijst[random1[4] - 1]);
+            positie.Add(nummerlijst[random1[5] - 1]);
+            positie.Add(nummerlijst[random1[6] - 1]);
+            positie.Add(nummerlijst[random1[7] - 1]);
+            positie.Add(nummerlijst[random1[8] - 1]);
+            positie.Add(nummerlijst[random1[9] - 1]);
+            positie.Add(nummerlijst[random1[10] - 1]);
+            positie.Add(nummerlijst[random1[11] - 1]);
+            positie.Add(nummerlijst[random1[12] - 1]);
+            positie.Add(nummerlijst[random1[13] - 1]);
+            positie.Add(nummerlijst[random1[14] - 1]);
+            positie.Add(nummerlijst[random1[15] - 1]);
+            return positie;
+
+        } 
        
-        private void cardflip(object sender, MouseButtonEventArgs e)
+     
+       private int[] randomnr()
         {
+            
+            int nummer1;
+            int[] random2 = new int[16];
+            for (int i = 0; i < 16; i++)
+            {
+                nummer1 = r.Next(17);
+
+                for (int b = 0; b < 16; b++)
+                {
+                    while (random2.Contains(nummer1) == true)
+                    {
+                        nummer1 = r.Next(17);
+                        b = 0;
+                    }
+                }
+                random2[i] = nummer1;
+            }return random2;
+        } 
+        
+        private void cardflip(object sender, MouseButtonEventArgs e)
+        {   
             int test = 0;
             Image card = (Image)sender;
-            ImageSource front = (ImageSource)card.Tag;
-            card.Source = front;
+            int front = (int)card.Tag;
+            card.Source = plaatjes[front];
             clicks = clicks + 1;
             if(clicks == 1)
             {
-                front1 = front;
+                front1 = kaartnmr[front];
             }
             if(clicks == 2)
             {
-                front2 = front;
+                front2 = kaartnmr[front];
             }
             if(clicks == 3)
             {
+                clicks = 0;
                 if( front1 == front2)
                 {
                     test = test + 1;
                 }
-                else
+                if ( front1 == front2)
                 {
                     test = test + 2;
                 }
+               
             }
         }
 
         
+
+
+
 
 
 

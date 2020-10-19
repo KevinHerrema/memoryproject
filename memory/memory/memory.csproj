@@ -95,19 +95,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="plaatjes\1.png" />
-    <Resource Include="plaatjes\2.png" />
-    <Resource Include="plaatjes\3.png" />
-    <Resource Include="plaatjes\4.png" />
-    <Resource Include="plaatjes\5.png" />
-    <Resource Include="plaatjes\6.png" />
-    <Resource Include="plaatjes\7.png" />
-    <Resource Include="plaatjes\8.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="plaatjes\kaart.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="images\Achterkant.tif" />
   </ItemGroup>
   <ItemGroup>
