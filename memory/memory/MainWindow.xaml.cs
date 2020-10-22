@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -12,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace memory
 {
@@ -19,7 +21,11 @@ namespace memory
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window
-    {   
+    {
+        bool beurtPlayer1 = true;
+         
+        int PPlayer1 = 0;
+        int PPlayer2 = 0;
         private const int Rows = 4;
         private const int Cols = 4;
         Random r = new Random();
@@ -30,14 +36,17 @@ namespace memory
         int[] random1 = new int[16];
         List<ImageSource> plaatjes;
         List<int> kaartnmr;
+        Uri path = new Uri("images/achterkant.tif", UriKind.Relative);
         public MainWindow()
         {
+
             InitializeComponent();
             InitializeGameGrid(Rows, Cols);
+            random1 = randomnr();
             plaatjes = plaatjeslist();
             addplaatjes(Rows, Cols);
             kaartnmr = checkpositie();
-            random1 = randomnr();
+            
         }
         private void InitializeGameGrid(int Rows, int Cols)
         {
@@ -54,58 +63,57 @@ namespace memory
 
         private void addplaatjes(int rows, int cols)
         {
-            List<int> locatie = checkpositie();
+            
             int c = 0; 
             for(int a = 0; a < rows; a++)
             {
                 for(int b =0; b < cols; b++)
                 {
                     Image backgroundimage = new Image();
-                    Uri path = new Uri("images/achterkant.tif", UriKind.Relative);
                     backgroundimage.Source = new BitmapImage(path);
                     backgroundimage.Tag = c;
                     c++;
-                    locatie.RemoveAt(0);
+                    
                     backgroundimage.MouseDown += new MouseButtonEventHandler(cardflip);
                     Grid.SetColumn(backgroundimage, b);
                     Grid.SetRow(backgroundimage, a);
                     GameGrid.Children.Add(backgroundimage);
-                    
+
 
                 }
             } 
-        } 
+        }
         private List<ImageSource> plaatjeslist()
         { List<ImageSource> images = new List<ImageSource>();
-          List<ImageSource> imagelist = new List<ImageSource>();
+            List<ImageSource> imagelist = new List<ImageSource>();
 
-            
-            for (int i = 0; i < (Rows * Cols) ; i++)
+
+            for (int i = 0; i < (Rows * Cols); i++)
             {
                 int nr = i % 8 + 1;
                 Uri path = new Uri("images/kaart_" + nr + ".tif", UriKind.Relative);
                 images.Add(new BitmapImage(path));
-                
+
             }
 
 
 
-            imagelist.Add(images[random1[0] - 1]);
-            imagelist.Add(images[random1[1] - 1]);
-            imagelist.Add(images[random1[2] - 1]);
-            imagelist.Add(images[random1[3] - 1]);
-            imagelist.Add(images[random1[4] - 1]);
-            imagelist.Add(images[random1[5] - 1]);
-            imagelist.Add(images[random1[6] - 1]);
-            imagelist.Add(images[random1[7] - 1]);
-            imagelist.Add(images[random1[8] - 1]);
-            imagelist.Add(images[random1[9] - 1]);
-            imagelist.Add(images[random1[10] - 1]);
-            imagelist.Add(images[random1[11] - 1]);
-            imagelist.Add(images[random1[12] - 1]);
-            imagelist.Add(images[random1[13] - 1]);
-            imagelist.Add(images[random1[14] - 1]);
-            imagelist.Add(images[random1[15] - 1]);
+            imagelist.Add(images[random1[0]-1]);
+            imagelist.Add(images[random1[1]-1]);
+            imagelist.Add(images[random1[2]-1]);
+            imagelist.Add(images[random1[3]-1]);
+            imagelist.Add(images[random1[4]-1]);
+            imagelist.Add(images[random1[5]-1]);
+            imagelist.Add(images[random1[6]-1]);
+            imagelist.Add(images[random1[7]-1]);
+            imagelist.Add(images[random1[8]-1]);
+            imagelist.Add(images[random1[9]-1]);
+            imagelist.Add(images[random1[10]-1]);
+            imagelist.Add(images[random1[11]-1]);
+            imagelist.Add(images[random1[12]-1]);
+            imagelist.Add(images[random1[13]-1]);
+            imagelist.Add(images[random1[14]-1]);
+            imagelist.Add(images[random1[15]-1]);
 
             return imagelist;
             
@@ -121,22 +129,22 @@ namespace memory
                 nummerlijst.Add(nr);
             }
 
-            positie.Add(nummerlijst[random1[0] - 1]);
-            positie.Add(nummerlijst[random1[1] - 1]);
-            positie.Add(nummerlijst[random1[2] - 1]);
-            positie.Add(nummerlijst[random1[3] - 1]);
-            positie.Add(nummerlijst[random1[4] - 1]);
-            positie.Add(nummerlijst[random1[5] - 1]);
-            positie.Add(nummerlijst[random1[6] - 1]);
-            positie.Add(nummerlijst[random1[7] - 1]);
-            positie.Add(nummerlijst[random1[8] - 1]);
-            positie.Add(nummerlijst[random1[9] - 1]);
-            positie.Add(nummerlijst[random1[10] - 1]);
-            positie.Add(nummerlijst[random1[11] - 1]);
-            positie.Add(nummerlijst[random1[12] - 1]);
-            positie.Add(nummerlijst[random1[13] - 1]);
-            positie.Add(nummerlijst[random1[14] - 1]);
-            positie.Add(nummerlijst[random1[15] - 1]);
+            positie.Add(nummerlijst[random1[0]-1]);
+            positie.Add(nummerlijst[random1[1]-1]);
+            positie.Add(nummerlijst[random1[2]-1]);
+            positie.Add(nummerlijst[random1[3]-1]);
+            positie.Add(nummerlijst[random1[4]-1]);
+            positie.Add(nummerlijst[random1[5]-1]);
+            positie.Add(nummerlijst[random1[6]-1]);
+            positie.Add(nummerlijst[random1[7]-1]);
+            positie.Add(nummerlijst[random1[8]-1]);
+            positie.Add(nummerlijst[random1[9]-1]);
+            positie.Add(nummerlijst[random1[10]-1]);
+            positie.Add(nummerlijst[random1[11]-1]);
+            positie.Add(nummerlijst[random1[12]-1]);
+            positie.Add(nummerlijst[random1[13]-1]);
+            positie.Add(nummerlijst[random1[14]-1]);
+            positie.Add(nummerlijst[random1[15]-1]);
             return positie;
 
         } 
@@ -164,10 +172,10 @@ namespace memory
         } 
         
         private void cardflip(object sender, MouseButtonEventArgs e)
-        {   
-            int test = 0;
+        {
+            int front = 0;
             Image card = (Image)sender;
-            int front = (int)card.Tag;
+            front = (int)card.Tag;
             card.Source = plaatjes[front];
             clicks = clicks + 1;
             if(clicks == 1)
@@ -178,19 +186,39 @@ namespace memory
             {
                 front2 = kaartnmr[front];
             }
-            if(clicks == 3)
+            
+        }private void score()
             {
-                clicks = 0;
-                if( front1 == front2)
+            Thread.Sleep(1000);
+            clicks = 0;
+            if (front1 == front2)
+            {
+                if (beurtPlayer1 == true)
                 {
-                    test = test + 1;
+                    PPlayer1 = PPlayer1 + 1;
                 }
-                if ( front1 == front2)
+
+
+
+                else
                 {
-                    test = test + 2;
+                    PPlayer2 = PPlayer2 + 1;
                 }
-               
+
             }
+            else
+            {
+                addplaatjes(Rows, Cols);
+                if (beurtPlayer1 == true)
+                {
+                    beurtPlayer1 = false;
+                }
+                else
+                {
+                    beurtPlayer1 = true;
+                }
+            }
+
         }
 
         
