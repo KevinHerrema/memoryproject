@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -31,22 +32,38 @@ namespace memory
         Random r = new Random();
         private static Random rng = new Random();
         int clicks = 0;
+        int front = 0;
+        int plaats1;
+        int plaats2;
         int front1;
         int front2;
         int[] random1 = new int[16];
         List<ImageSource> plaatjes;
         List<int> kaartnmr;
+        private int[,] statuskaarten = new int[Rows, Cols];
         Uri path = new Uri("images/achterkant.tif", UriKind.Relative);
+        DispatcherTimer timer = new DispatcherTimer();
+        bool magklicken = true;
+        Image card1;
+        Image card2;
         public MainWindow()
         {
 
+
             InitializeComponent();
+            
+            timer.Interval = TimeSpan.FromSeconds(1);
+            timer.Tick += timer_Tick;
+            
             InitializeGameGrid(Rows, Cols);
             random1 = randomnr();
             plaatjes = plaatjeslist();
             addplaatjes(Rows, Cols);
             kaartnmr = checkpositie();
-            
+            if (clicks == 2)
+            {
+                score();
+            }
         }
         private void InitializeGameGrid(int Rows, int Cols)
         {
@@ -95,6 +112,8 @@ namespace memory
                 images.Add(new BitmapImage(path));
 
             }
+           
+
 
 
 
@@ -114,7 +133,8 @@ namespace memory
             imagelist.Add(images[random1[13]-1]);
             imagelist.Add(images[random1[14]-1]);
             imagelist.Add(images[random1[15]-1]);
-
+            Uri path2 = new Uri("images/transparant.png", UriKind.Relative);
+            imagelist.Add(new BitmapImage(path2));
             return imagelist;
             
             
@@ -173,32 +193,48 @@ namespace memory
         
         private void cardflip(object sender, MouseButtonEventArgs e)
         {
-            int front = 0;
-            Image card = (Image)sender;
-            front = (int)card.Tag;
-            card.Source = plaatjes[front];
-            clicks = clicks + 1;
-            if(clicks == 1)
+            if (magklicken)
             {
-                front1 = kaartnmr[front];
+                Image card = (Image)sender;
+                front = (int)card.Tag;
+                card.Source = plaatjes[front];
+                clicks = clicks + 1;
+                if (clicks == 1)
+                {   
+                    front1 = kaartnmr[front];
+                    card1 = (Image)sender;
+                }
+                if (clicks == 2)
+                {
+                    front2 = kaartnmr[front];
+                    card2 = (Image)sender;
+                    timer.Start();
+                    magklicken = false;
+                }
             }
-            if(clicks == 2)
-            {
-                front2 = kaartnmr[front];
-            }
+
             
-        }private void score()
+        }
+        void timer_Tick(object sender, EventArgs e)
+        {
+            score();
+            timer.Stop();
+            magklicken = true;
+        }
+       
+        private void score()
             {
-            Thread.Sleep(1000);
+            
             clicks = 0;
             if (front1 == front2)
             {
+                ImageSource leeg = null;
+                card1.Source = leeg;
+                card2.Source = leeg;
                 if (beurtPlayer1 == true)
                 {
                     PPlayer1 = PPlayer1 + 1;
                 }
-
-
 
                 else
                 {
@@ -207,8 +243,9 @@ namespace memory
 
             }
             else
-            {
-                addplaatjes(Rows, Cols);
+            {   ImageSource terug = new BitmapImage( new Uri("images/achterkant.tif", UriKind.Relative));
+                card1.Source = terug;
+                card2.Source = terug;
                 if (beurtPlayer1 == true)
                 {
                     beurtPlayer1 = false;
@@ -217,10 +254,38 @@ namespace memory
                 {
                     beurtPlayer1 = true;
                 }
+                
             }
 
         }
 
+
+        private void SaveButton_Click(object sender, RoutedEventArgs e) 
+        {
+            MessageBox.Show("Score opgeslagen");
+
+            using (var writer = new StreamWriter(@"C:\highscore.sav")) 
+            {
+                writer.WriteLine(PPlayer1 + PPlayer2);
+
+            }
+
+
+        }
+        
+        private void scorebord() 
+        {
+            MessageBox.Show("Save test");
+
+            using (var writer = new StreamWriter(@"C:\highscore.sav")) 
+            { 
+                
+            
+            }
+
+        
+        
+        }
         
 
 
