@@ -95,23 +95,44 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="plaatjes\1.png" />
-    <Resource Include="plaatjes\2.png" />
-    <Resource Include="plaatjes\3.png" />
-    <Resource Include="plaatjes\4.png" />
-    <Resource Include="plaatjes\5.png" />
-    <Resource Include="plaatjes\6.png" />
-    <Resource Include="plaatjes\7.png" />
-    <Resource Include="plaatjes\8.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <Resource Include="plaatjes\kaart.png" />
-  </ItemGroup>
-  <ItemGroup>
     <Resource Include="Assets\Back.png" />
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Assets\Start.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Stop.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Ui2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Ui.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Reset.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Save.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Assets\Load.png" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="images\Kaart_1.tif" />
+    <Resource Include="images\Kaart_4.tif" />
+    <Resource Include="images\Kaart_5.tif" />
+    <Resource Include="images\Kaart_6.tif" />
+    <Resource Include="images\Kaart_7.tif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Kaart_2.tif" />
+    <Resource Include="images\Kaart_3.tif" />
+    <Resource Include="images\Kaart_8.tif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\Achterkant.tif" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

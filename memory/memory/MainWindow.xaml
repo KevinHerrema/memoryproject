@@ -8,18 +8,40 @@
         Title="MainWindow" Height="450" Width="800">
 
     <Grid x:Name="MenuGrid">
-        <Grid.Background>
-            <ImageBrush ImageSource="/Assets/Back.png" Stretch="UniformToFill"/>
-        </Grid.Background>
-        <Grid x:Name="GameGrid"/>
-        <Button
-          x:Name = "Button1" Content = "Klik om te starten" Click="Button1_Click"
-         HorizontalAlignment = "Left" Margin = "280,184,0,0"
-         VerticalAlignment = "Top" Width = "200"/>
+        <Image x:Name="Back1" Source="/Assets/Back.png" Stretch="UniformToFill" Panel.ZIndex="1"/>
 
-        <Button x:Name ="Button2" Click="Button2_Click"  Width="100" Margin="0,0,692,352">
-            <Image Source="Assets/Start.png" Height="72" Width="96" />
+
+        <Grid  x:Name="GameGrid" Width="800" Height="450" Panel.ZIndex="3" />
+
+        <Button x:Name ="StartButton" Click="StartButton_Click"  Width="190" Height="30" Panel.ZIndex="3"  >
+            <Image Source="Assets/Start.png" HorizontalAlignment="Center" Height="30" Width="200" />
         </Button>
 
+
+        <Button x:Name = "StopButton" Click="StopButton_Click" Width="190" Height="30" Margin="202,364,400,10" Panel.ZIndex="3" >
+            <Image Source="Assets/Stop.png" HorizontalAlignment="Center" Width="200" Stretch="Fill" Height="30" />
+        </Button>
+
+        <Button x:Name="Reset" Click="Reset_Click"  Width="190" Height="30"  Margin="7,364,595,10" Panel.ZIndex="3">
+            <Image Source="Assets/Reset.png"  HorizontalAlignment="Center" Width="190"  Height="30"  />
+        </Button>
+
+        <Button x:Name="Load" Click="Load_Click"  Width="190" Height="30"  Margin="592,364,10,10" Panel.ZIndex="3">
+            <Image Source="Assets/Load.png"  HorizontalAlignment="Center" Width="190"  Height="30"  />
+        </Button>
+
+        <Button x:Name="Save" Click="Save_Click"  Width="190" Height="30"  Margin="397,364,205,10" Panel.ZIndex="3">
+            <Image Source="Assets/Save.png"  HorizontalAlignment="Center" Width="190"  Height="30"  />
+        </Button>
+
+        <Grid x:Name="UiMenu"  Height="450"  Width="800" Panel.ZIndex="2" VerticalAlignment="Bottom" >
+            <Image x:Name="Ui2" Source="Assets/Ui2.png" Margin="-8,0,0,-31" Width="800" Height="450" Panel.ZIndex="2" />
+            <Image x:Name="Ui" Source="Assets/Ui.png" Width="800" Height="160" Stretch="Uniform" Margin="0,399,0,0" Panel.ZIndex="2"/>
+        </Grid>
+
+
+
+
+
     </Grid>
-</Window>
+</Window> 

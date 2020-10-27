@@ -28,3 +28,33 @@ C:\Users\robin\School\memory\memory\obj\Debug\memory.csproj.GenerateResource.cac
 C:\Users\robin\School\memory\memory\obj\Debug\memory.csproj.CoreCompileInputs.cache
 C:\Users\robin\School\memory\memory\obj\Debug\memory.exe
 C:\Users\robin\School\memory\memory\obj\Debug\memory.pdb
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\bin\Debug\memory.exe.config
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\bin\Debug\memory.exe
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\bin\Debug\memory.pdb
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\memory.csprojAssemblyReference.cache
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\MainWindow.g.cs
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\App.g.cs
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\memory_MarkupCompile.cache
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\memory_MarkupCompile.lref
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\MainWindow.baml
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\memory.g.resources
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\memory.Properties.Resources.resources
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\memory.csproj.GenerateResource.cache
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\memory.csproj.CoreCompileInputs.cache
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\memory.exe
+C:\Users\robin\OneDrive\Documenten\School\Niet nieuwe map\memory\memory\obj\Debug\memory.pdb
+D:\Memory\memory\memory\bin\Debug\memory.exe.config
+D:\Memory\memory\memory\bin\Debug\memory.exe
+D:\Memory\memory\memory\bin\Debug\memory.pdb
+D:\Memory\memory\memory\obj\Debug\memory.csprojAssemblyReference.cache
+D:\Memory\memory\memory\obj\Debug\MainWindow.g.cs
+D:\Memory\memory\memory\obj\Debug\App.g.cs
+D:\Memory\memory\memory\obj\Debug\memory_MarkupCompile.cache
+D:\Memory\memory\memory\obj\Debug\memory_MarkupCompile.lref
+D:\Memory\memory\memory\obj\Debug\MainWindow.baml
+D:\Memory\memory\memory\obj\Debug\memory.g.resources
+D:\Memory\memory\memory\obj\Debug\memory.Properties.Resources.resources
+D:\Memory\memory\memory\obj\Debug\memory.csproj.GenerateResource.cache
+D:\Memory\memory\memory\obj\Debug\memory.csproj.CoreCompileInputs.cache
+D:\Memory\memory\memory\obj\Debug\memory.exe
+D:\Memory\memory\memory\obj\Debug\memory.pdb

@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("assets/start.png")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("images/achterkant.tif")]
 
 
