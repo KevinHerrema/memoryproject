@@ -116,5 +116,8 @@
     <Resource Include="images\Kaart_8.tif" />
     <Resource Include="images\Kaart_9.tif" />
   </ItemGroup>
+  <ItemGroup>
+    <Resource Include="images\achtergrond.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

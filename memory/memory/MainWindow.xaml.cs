@@ -45,7 +45,9 @@ namespace memory
         DispatcherTimer timer = new DispatcherTimer();
         bool magklicken = true;
         Image card1;
-        Image card2;
+        Image card2; 
+        List<ImageSource> imagelist = new List<ImageSource>();
+        List<int> positie = new List<int>();
         public MainWindow()
         {
 
@@ -102,7 +104,7 @@ namespace memory
         }
         private List<ImageSource> plaatjeslist()
         { List<ImageSource> images = new List<ImageSource>();
-            List<ImageSource> imagelist = new List<ImageSource>();
+           
 
 
             for (int i = 0; i < (Rows * Cols); i++)
@@ -133,15 +135,14 @@ namespace memory
             imagelist.Add(images[random1[13]-1]);
             imagelist.Add(images[random1[14]-1]);
             imagelist.Add(images[random1[15]-1]);
-            Uri path2 = new Uri("images/transparant.png", UriKind.Relative);
-            imagelist.Add(new BitmapImage(path2));
+            
             return imagelist;
             
             
         }
         private List<int> checkpositie()
         {   List<int> nummerlijst = new List<int>();
-            List<int> positie = new List<int>();
+            
             
             for (int i = 0; i < (Rows * Cols); i++)
             {
@@ -195,19 +196,21 @@ namespace memory
         {
             if (magklicken)
             {
+                
                 Image card = (Image)sender;
                 front = (int)card.Tag;
                 card.Source = plaatjes[front];
                 clicks = clicks + 1;
                 if (clicks == 1)
-                {   
+                {   plaats1 = front;
                     front1 = kaartnmr[front];
                     card1 = (Image)sender;
-                }
+                }   
                 if (clicks == 2)
                 {
                     front2 = kaartnmr[front];
                     card2 = (Image)sender;
+                    plaats2 = front;
                     timer.Start();
                     magklicken = false;
                 }
@@ -231,6 +234,8 @@ namespace memory
                 ImageSource leeg = null;
                 card1.Source = leeg;
                 card2.Source = leeg;
+                positie[plaats1] = 9;
+                positie[plaats2] = 9;
                 if (beurtPlayer1 == true)
                 {
                     PPlayer1 = PPlayer1 + 1;
@@ -243,7 +248,8 @@ namespace memory
 
             }
             else
-            {   ImageSource terug = new BitmapImage( new Uri("images/achterkant.tif", UriKind.Relative));
+            {
+                ImageSource terug = new BitmapImage(new Uri("images/achterkant.tif", UriKind.Relative));
                 card1.Source = terug;
                 card2.Source = terug;
                 if (beurtPlayer1 == true)
@@ -254,19 +260,70 @@ namespace memory
                 {
                     beurtPlayer1 = true;
                 }
-                
-            }
 
+            }
+            savebutton();
+
+        }
+        private void savebutton()
+        {
+           
+            using (var writer = new StreamWriter(@"D:\memory.sav"))
+            {   writer.WriteLine(beurtPlayer1);
+                writer.WriteLine(PPlayer1);
+                writer.WriteLine(PPlayer2);
+                for(int i = 0; i < 16; i++)
+                {
+                    writer.WriteLine(positie[i]);
+
+                }
+            }
+        }
+
+        private void loadbutton()
+        {
+            int regel = 0;
+            string line;
+            using (StreamReader reader = new StreamReader(@"D:\memory.sav"))
+            {
+               while((line = reader.ReadLine()) != null)
+                {
+                    if (regel == 0)
+                    {
+                        beurtPlayer1 = Convert.ToBoolean(line);
+                    }
+                    if(regel == 1)
+                    {
+                        PPlayer1 = Convert.ToInt32(line) - 48;
+                    }
+                    if (regel == 2)
+                    {
+                        PPlayer2 = Convert.ToInt32(line) - 48;
+                    }
+                    else
+                    {
+
+                    }
+
+
+                }regel++;
+            }
+           
         }
 
 
-        private void SaveButton_Click(object sender, RoutedEventArgs e) 
+
+
+        private void savescore (object sender, RoutedEventArgs e) 
         {
             MessageBox.Show("Score opgeslagen");
 
             using (var writer = new StreamWriter(@"C:\highscore.sav")) 
             {
-                writer.WriteLine(PPlayer1 + PPlayer2);
+                writer.WriteLine(PPlayer1);
+                writer.WriteLine(PPlayer2);
+
+
 
             }
 
@@ -275,12 +332,24 @@ namespace memory
         
         private void scorebord() 
         {
-            MessageBox.Show("Save test");
+            MessageBox.Show("laad test");
 
-            using (var writer = new StreamWriter(@"C:\highscore.sav")) 
-            { 
+            using (var writer = new StreamWriter(@"C:\highscore.sav"))
+            {
                 
-            
+                Dictionary<string, int> scorebord = new Dictionary<string, int>();
+                
+
+                
+
+
+
+
+               
+
+
+
+
             }
 
         
