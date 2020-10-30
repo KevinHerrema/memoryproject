@@ -52,55 +52,77 @@ namespace memory
         List<int> positie = new List<int>();
 
 
+        string Naam1;
+        string Naam2;
+
+
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeMenuGrid();
             InitializeGameGrid(Rows + 1, Cols);
-            InitializeVisible();
+
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             random1 = randomnr();
             plaatjes = plaatjeslist();
-           
+            
             kaartnmr = checkpositie();
-
+            
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e) //start button
         {
+            Pkleur();
             random1 = randomnr();
             plaatjes = plaatjeslist();
             kaartnmr = checkpositie();
             addplaatjes(Rows, Cols);
+
             StartButton.Visibility = Visibility.Hidden;
             StopButton.Visibility = Visibility.Visible;
             GameGrid.Visibility = Visibility.Visible;
-            Ui2.Visibility = Visibility.Visible;
+            
             Back1.Visibility = Visibility.Hidden;
             Ui.Visibility = Visibility.Visible;
             Reset.Visibility = Visibility.Visible;
             Save.Visibility = Visibility.Visible;
             Load.Visibility = Visibility.Visible;
-                        
+
+            TextBlock3.Visibility = Visibility.Hidden;
+            TextBlock2.Visibility = Visibility.Hidden;
+            TextBlock1.Visibility = Visibility.Hidden;
+            TextBox1.Visibility = Visibility.Hidden;
+            TextBox2.Visibility = Visibility.Hidden;
+            SpNaam.Visibility = Visibility.Hidden;
+            SpNaam1.Visibility = Visibility.Hidden;
+            Ui.Visibility = Visibility.Visible;
         }
 
         private void StopButton_Click(object sender, RoutedEventArgs e) //stop button
-        {   Array.Clear(random2, 0, random2.Length);
+        {
+            Array.Clear(random2, 0, random2.Length);
             positie.Clear();
             imagelist.Clear();
-            cleargame();           
+            cleargame();
+            PPlayer1 = 0;
+            PPlayer2 = 0;
             StopButton.Visibility = Visibility.Hidden;
             StartButton.Visibility = Visibility.Visible;
             GameGrid.Visibility = Visibility.Hidden;
-            Ui2.Visibility = Visibility.Hidden;
+            Ui.Visibility = Visibility.Hidden;
             Back1.Visibility = Visibility.Visible;
             Ui.Visibility = Visibility.Hidden;
             Reset.Visibility = Visibility.Hidden;
             Load.Visibility = Visibility.Hidden;
             Save.Visibility = Visibility.Hidden;
-
+            TextBlock3.Visibility = Visibility.Visible;
+            TextBlock2.Visibility = Visibility.Visible;
+            TextBlock1.Visibility = Visibility.Visible;
+            TextBox1.Visibility = Visibility.Visible;
+            TextBox2.Visibility = Visibility.Visible;
+            StartButton.Visibility = Visibility.Hidden;
         }
 
         private async void Reset_Click(object sender, RoutedEventArgs e)
@@ -114,6 +136,8 @@ namespace memory
             positie.Clear();
             imagelist.Clear();
             cleargame();
+            PPlayer1 = 0;
+            PPlayer2 = 0;
 
             random1 = randomnr();
             plaatjes = plaatjeslist();
@@ -122,32 +146,80 @@ namespace memory
 
             Reset.Visibility = Visibility.Visible;
             GameGrid.Visibility = Visibility.Visible;
-            
-           
+
+
         }
 
 
         private void InitializeMenuGrid()
         {
-            //heeft nog geen toevoeging/ zal geen toevoeging hebben tenzij iemand weet hoe je initialize maar 1 keer kan laten runnen
-            
-        }
-        
-        private void InitializeVisible() //dit menu bevat alle functies die voor het start menu verborgen worden
-        {
             StopButton.Visibility = Visibility.Hidden;
             GameGrid.Visibility = Visibility.Hidden;
-            Ui2.Visibility = Visibility.Hidden;
             Ui.Visibility = Visibility.Hidden;
+           
             Reset.Visibility = Visibility.Hidden;
             Load.Visibility = Visibility.Hidden;
             Save.Visibility = Visibility.Hidden;
+            SpNaam1.Visibility = Visibility.Hidden;
+            StartButton.Visibility = Visibility.Hidden;
+
+
+
+        }
+              
+
+        private void SpNaam_Click(object sender, RoutedEventArgs e) //uhm ja misschien effe save files fixen
+        {
+            TextBlock2.Visibility = Visibility.Hidden;
+            TextBox1.Visibility = Visibility.Hidden;
+            SpNaam.Visibility = Visibility.Hidden;
+            SpNaam1.Visibility = Visibility.Visible;
+            Naam1 = TextBox1.Text;
+            
+
+
+
         }
 
-        
-      /// <summary>
-      /// methode om de grid weer leeg te halen
-      /// </summary>
+
+        private void SpNaam1_Click(object sender, RoutedEventArgs e)
+        {
+            TextBlock3.Visibility = Visibility.Hidden;
+            TextBlock1.Visibility = Visibility.Hidden;
+            TextBox2.Visibility = Visibility.Hidden;
+            SpNaam1.Visibility = Visibility.Hidden;
+                        
+            Naam2 = TextBox2.Text;
+            StartButton.Visibility = Visibility.Visible;
+        }
+
+        private void Pkleur()
+        {
+            if (beurtPlayer1 == true)
+            {
+                P1.Visibility = Visibility.Visible;
+                P2.Visibility = Visibility.Hidden;
+                DisplayNm1.Text = Naam1 + ": " + PPlayer1;
+                DisplayNm1.Visibility = Visibility.Visible;
+                DisplayNm2.Visibility = Visibility.Hidden;
+            }
+            if (beurtPlayer1 == false)
+            {
+                P2.Visibility = Visibility.Visible;
+                P1.Visibility = Visibility.Hidden;
+                DisplayNm2.Text = Naam2 + ": " + PPlayer2;
+                DisplayNm1.Visibility = Visibility.Hidden;
+                DisplayNm2.Visibility = Visibility.Visible;
+            }
+           
+        }
+       
+
+
+
+
+
+
         private void cleargame()
         {
             for (int i = GameGrid.Children.Count - 1; i >= 0; i--)
@@ -157,17 +229,17 @@ namespace memory
 
         }
 
-       
+
 
         /// <summary>
         /// maakt de grid aan waar het spel in gespeeld zal worden
         /// </summary>
         /// <param name="Rows">het aantal rijen</param>
         /// <param name="Cols">het aantal collomen</param>
-        private void InitializeGameGrid(int Rows, int Cols) 
+        private void InitializeGameGrid(int Rows, int Cols)
         {
-            
-            for(int i = 0; i < Rows; i++)
+
+            for (int i = 0; i < Rows; i++)
             {
                 GameGrid.RowDefinitions.Add(new RowDefinition());
             }
@@ -175,7 +247,7 @@ namespace memory
             {
                 GameGrid.ColumnDefinitions.Add(new ColumnDefinition());
             }
-            
+
         }
         /// <summary>
         /// methode om de grid te vullen met achtergrond plaatjes en hieraan een tag te verbinden voor de positie
@@ -330,21 +402,21 @@ namespace memory
 
                 if (clicks == 2)//houd de informatie van de 2e click bij, start de timer en zorgt dat je niet meer mag clicken
                 {
-                    if(plaats1 == front)
+                    if (plaats1 == front)
                     {
                         clicks = clicks - 1;
                     }
                     else
                     {
-                        
-                    front2 = kaartnmr[front];
-                    card2 = (Image)sender;
-                    plaats2 = front;
-                    timer.Start();
-                    magklicken = false;
+
+                        front2 = kaartnmr[front];
+                        card2 = (Image)sender;
+                        plaats2 = front;
+                        timer.Start();
+                        magklicken = false;
 
                     }
-                    
+
                 }
             }
 
@@ -386,7 +458,7 @@ namespace memory
                     PPlayer2 = PPlayer2 + 1;
                 }
                 totaalkaarten = totaalkaarten - 2;// haal 2 kaarten van het totaal aantal kaarten af
-
+                Pkleur();
             }
             else//zijn de kaarten niet gelijk zet de kaarten terug en wissel van beurt
             {
@@ -396,17 +468,19 @@ namespace memory
                 if (beurtPlayer1 == true)
                 {
                     beurtPlayer1 = false;
+                    
                 }
                 else
                 {
                     beurtPlayer1 = true;
-                }
+                   
+                } Pkleur();
 
             }
-            if(totaalkaarten == 0)// als er geen kaarten meer over zijn stop het spel
+            if (totaalkaarten == 0)// als er geen kaarten meer over zijn stop het spel
             {
-                MessageBox.Show("score van"+ "speler 1 "+ "=" + PPlayer1);// laat de scores van beide spelers zien
-                MessageBox.Show("score van " + "speler 2 " +"=" + PPlayer2);
+                MessageBox.Show("score van" + "speler 1 " + "=" + PPlayer1);// laat de scores van beide spelers zien
+                MessageBox.Show("score van " + "speler 2 " + "=" + PPlayer2);
                 //reset alle waardes en ga terug naar het hoofd menu
                 Array.Clear(random2, 0, random2.Length);
                 positie.Clear();
@@ -415,7 +489,7 @@ namespace memory
                 StopButton.Visibility = Visibility.Hidden;
                 StartButton.Visibility = Visibility.Visible;
                 GameGrid.Visibility = Visibility.Hidden;
-                Ui2.Visibility = Visibility.Hidden;
+                
                 Back1.Visibility = Visibility.Visible;
                 Ui.Visibility = Visibility.Hidden;
                 Reset.Visibility = Visibility.Hidden;
@@ -440,12 +514,14 @@ namespace memory
                 writer.WriteLine(PPlayer1);
                 writer.WriteLine(PPlayer2);
                 writer.WriteLine(totaalkaarten);
+                writer.WriteLine(Naam1);
+                writer.WriteLine(Naam2);
                 for (int i = 0; i < 16; i++)
                 {
                     writer.WriteLine(positie[i]);
 
                 }
-                
+
             }
         }
         /// <summary>
@@ -468,35 +544,45 @@ namespace memory
                 {
                     if (regel == 0)
                     {
-                        beurtPlayer1 = Convert.ToBoolean(line);                  
-                     }
+                        beurtPlayer1 = Convert.ToBoolean(line);
+                    }
                     else
-                    if(regel == 1)
+                    if (regel == 1)
                     {
                         PPlayer1 = Convert.ToInt32(line);
 
                     }
                     else
-                    if(regel == 2)
+                    if (regel == 2)
                     {
                         PPlayer2 = Convert.ToInt32(line);
 
                     }
                     else
-                    if(regel == 3)
+                    if (regel == 3)
                     {
                         totaalkaarten = Convert.ToInt32(line);
                     }
                     else
+                    if(regel == 4)
                     {
-                        positie.Add(Convert.ToInt32( line));// vul de lijst positie en plaatjes met de opgeslagen waardes
+                        Naam1 = line;
+                    }
+                    else
+                    if(regel == 5)
+                    {
+                        Naam2 = line;
+                    }
+                    else
+                    {
+                        positie.Add(Convert.ToInt32(line));// vul de lijst positie en plaatjes met de opgeslagen waardes
                         BitmapImage image = null;
                         if (line != "9")
                         {
-                           Uri path = new Uri("images/kaart_" + line + ".tif", UriKind.Relative);
+                            Uri path = new Uri("images/kaart_" + line + ".tif", UriKind.Relative);
                             image = new BitmapImage(path);
                         }
-                        
+
                         imagelist.Add(image);
                     }
                     regel++;
@@ -505,6 +591,7 @@ namespace memory
             }
             int c = 0;
             int check;
+            Pkleur();
             //maak een nieuw speelveld aan met de geupdate plaatjes
             for (int a = 0; a < Rows; a++)
             {
@@ -516,18 +603,18 @@ namespace memory
                     backgroundimage.Tag = c;
                     c++;
                     backgroundimage.MouseDown += new MouseButtonEventHandler(cardflip);
-                    if(check == 9)//als de positie op 9 staat laat het vakje leeg
+                    if (check == 9)//als de positie op 9 staat laat het vakje leeg
                     {
-                        
+
                     }
                     else// is de positie onder de 9 maak een achtergrond aan
                     {
                         Grid.SetColumn(backgroundimage, b);
-                    Grid.SetRow(backgroundimage, a);
-                    GameGrid.Children.Add(backgroundimage);
+                        Grid.SetRow(backgroundimage, a);
+                        GameGrid.Children.Add(backgroundimage);
 
                     }
-                    
+
 
 
                 }
@@ -536,12 +623,12 @@ namespace memory
 
         }
 
-       
+
 
     }
 
-   
 
-        
-    
+
+
+
 }

@@ -5,39 +5,83 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:memory"
         mc:Ignorable="d"
-        Title="MainWindow" Height="450" Width="800">
+        Title="MainWindow" Height="1080" Width="1920">
 
-    <Grid x:Name="MenuGrid">
-        <Image x:Name="Back1" Source="/Assets/Back.png" Stretch="UniformToFill" Panel.ZIndex="1"/>
+    <Grid x:Name="MenuGrid" >
 
-
-        <Grid  x:Name="GameGrid" Width="800" Height="450" Panel.ZIndex="3" />
-
-        <Button x:Name ="StartButton" Click="StartButton_Click"  Width="190" Height="30" Panel.ZIndex="3"  >
-            <Image Source="Assets/Start.png" HorizontalAlignment="Center" Height="30" Width="200" />
+        <Image x:Name="Back1" Source="/Assets/Back.png" Stretch="UniformToFill" Panel.ZIndex="3"  Grid.RowSpan="2"  />
+        <Button x:Name ="StartButton" Click="StartButton_Click"  Width="400" Height="60" Panel.ZIndex="4" Background="#FF333333" Margin="756,494,756,430">
+            <Image Source="Assets/Start.png" HorizontalAlignment="Center" Width="400" Height="60" Panel.ZIndex="4"  />
         </Button>
 
+        <Button x:Name="SpNaam" Click="SpNaam_Click" Content="Voeg Speler toe"   HorizontalAlignment="Left" Margin="756,699,0,0" VerticalAlignment="Top" Width="400" Height="70" Panel.ZIndex="4" 
+                Foreground="#FFFBFBFB" Background="#FF6AE64E" FontSize="25px" FontFamily="Tw Cen MT Condensed Extra Bold" />
+        <Button x:Name="SpNaam1" Click="SpNaam1_Click" Content="Voeg Speler toe"   HorizontalAlignment="Left" Margin="756,699,0,0" VerticalAlignment="Top" Width="400" Height="70" Panel.ZIndex="4" 
+                Foreground="#FFFBFBFB" Background="#FF6AE64E" FontSize="25px" FontFamily="Tw Cen MT Condensed Extra Bold" />
 
-        <Button x:Name = "StopButton" Click="StopButton_Click" Width="190" Height="30" Margin="202,364,400,10" Panel.ZIndex="3" >
-            <Image Source="Assets/Stop.png" HorizontalAlignment="Center" Width="200" Stretch="Fill" Height="30" />
-        </Button>
 
-        <Button x:Name="Reset" Click="Reset_Click"  Width="190" Height="30"  Margin="7,364,595,10" Panel.ZIndex="3">
-            <Image Source="Assets/Reset.png"  HorizontalAlignment="Center" Width="190"  Height="30"  />
-        </Button>
+        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="100"  Margin="756,599,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="400" Panel.ZIndex="4" Background="#FFA6A7AE"/>
+        <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="100"  Margin="756,599,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="400" Panel.ZIndex="3" Background="#FFA6A7AE"/>
 
-        <Button x:Name="Load" Click="Load_Click"  Width="190" Height="30"  Margin="592,364,10,10" Panel.ZIndex="3">
-            <Image Source="Assets/Load.png"  HorizontalAlignment="Center" Width="190"  Height="30"  />
-        </Button>
 
-        <Button x:Name="Save" Click="Save_Click"  Width="190" Height="30"  Margin="397,364,205,10" Panel.ZIndex="3">
-            <Image Source="Assets/Save.png"  HorizontalAlignment="Center" Width="190"  Height="30"  />
-        </Button>
+        <TextBlock x:Name="TextBlock2" Margin="1444,494,68,338" TextWrapping="Wrap" Text="Speler 1 "  Width="400" Panel.ZIndex="4"
+                 Foreground="#FFFBFBFB" Background="#FF4E9AE6" FontSize="75px" FontFamily="Tw Cen MT Condensed Extra Bold"  />
 
-        <Grid x:Name="UiMenu"  Height="450"  Width="800" Panel.ZIndex="2" VerticalAlignment="Bottom" >
-            <Image x:Name="Ui2" Source="Assets/Ui2.png" Margin="-8,0,0,-31" Width="800" Height="450" Panel.ZIndex="2" />
-            <Image x:Name="Ui" Source="Assets/Ui.png" Width="800" Height="160" Stretch="Uniform" Margin="0,399,0,0" Panel.ZIndex="2"/>
+        <TextBlock x:Name="TextBlock3" Margin="1444,656,68,176" TextWrapping="Wrap" Text="Speler 2 "  Width="400" Panel.ZIndex="4"
+                 Foreground="#FFFBFBFB" Background="#FFE64E4E" FontSize="75px" FontFamily="Tw Cen MT Condensed Extra Bold"  />
+
+        <TextBlock x:Name="TextBlock1" HorizontalAlignment="Left" Height="39" Margin="756,560,0,0" TextWrapping="Wrap" Text="Vul hier onder uw naam in: "  VerticalAlignment="Top" Width="400" Panel.ZIndex="4" 
+                   Foreground="#FFFBFBFB" Background="#FF333333" FontSize="25" FontFamily="Tw Cen MT Condensed Extra Bold" TextAlignment="Center" />
+
+
+        <Grid  x:Name="GameGrid" Width="1920" Height="1080" Panel.ZIndex="2" Margin="0,0,-8,-31" Grid.RowSpan="2" >
         </Grid>
+
+        <Grid x:Name="UiMenu"  Height="1080"  Width="1920"   >
+
+            <Image x:Name="Ui" Source="Assets/Ui2.png" Panel.ZIndex="2" Stretch="UniformToFill"  />
+
+
+            <Button x:Name="Save" Click="Save_Click"  Width="400" Height="60"  Panel.ZIndex="3" Margin="1051,944,469,76" Background="#FF333333">
+                <Image Source="Assets/Save.png"  HorizontalAlignment="Center" Width="400" Height="60"  Panel.ZIndex="3"  />
+            </Button>
+
+
+            <Button x:Name = "StopButton" Click="StopButton_Click" Width="400" Height="60"  Panel.ZIndex="3" Margin="564,944,956,76" Background="#FF333333">
+                <Image Source="Assets/Stop.png" HorizontalAlignment="Center"  Width="400" Stretch="Fill"    />
+            </Button>
+
+            <Button x:Name="Reset" Click="Reset_Click"  Width="400" Height="60"   Panel.ZIndex="3" Margin="0,944,1520,76" Background="#FF333333">
+                <Image Source="Assets/Reset.png"  HorizontalAlignment="Center" VerticalAlignment="Bottom" Width="400"  Height="60"    />
+            </Button>
+
+            <Button x:Name="Load" Click="Load_Click"  Width="400" Height="60"   Panel.ZIndex="3" Margin="1520,944,0,76" Background="#FF333333">
+                <Image Source="Assets/Load.png"  HorizontalAlignment="Center" Width="400"  Height="60"  Panel.ZIndex="3"/>
+            </Button>
+
+
+            <TextBlock x:Name="P1"  FontSize="200" TextWrapping="Wrap" Height="285"  
+                   Background="#FF53A6F0" Panel.ZIndex="2"  Foreground="#FF3699EC" Margin="0,854,-80,-74"/>
+            <TextBlock x:Name="DisplayNm1" Margin="10,872,10,106" Foreground="White" Panel.ZIndex="4" FontSize="69" FontFamily="Tw Cen MT Condensed Extra Bold"
+                />
+
+            <TextBlock x:Name="P2"  Height="285"  Width="2000"
+                   Background="#FFF05353" Panel.ZIndex="2"   Margin="0,854,-80,-74">
+            </TextBlock>
+            <TextBlock x:Name="DisplayNm2" Margin="10,872,10,106" Foreground="White" Panel.ZIndex="4" FontSize="69" FontFamily="Tw Cen MT Condensed Extra Bold"
+                />
+
+        </Grid>
+
+        <Grid x:Name="HighScore">
+            <Button x:Name="Score" Width="400" Height="60" Panel.ZIndex="4">
+                
+            </Button>
+        </Grid>
+
+
+
+
 
 
 
