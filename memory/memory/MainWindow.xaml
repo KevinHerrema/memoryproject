@@ -7,37 +7,54 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="1080" Width="1920">
 
-    <Grid x:Name="MenuGrid" >
+    <Grid x:Name="Game" >
+        <Grid x:Name="StartMenu" >
+            <Image x:Name="Back1" Source="/Assets/Back.png" Stretch="UniformToFill" Panel.ZIndex="3"  Grid.RowSpan="2"  />
+            <Button x:Name ="StartButton" Click="StartButton_Click"  Width="400" Height="60" Panel.ZIndex="4" Background="#FF333333" Margin="756,494,756,430">
+                <Image Source="Assets/Start.png" HorizontalAlignment="Center" Width="400" Height="60" Panel.ZIndex="4"  />
+            </Button>
 
-        <Image x:Name="Back1" Source="/Assets/Back.png" Stretch="UniformToFill" Panel.ZIndex="3"  Grid.RowSpan="2"  />
-        <Button x:Name ="StartButton" Click="StartButton_Click"  Width="400" Height="60" Panel.ZIndex="4" Background="#FF333333" Margin="756,494,756,430">
-            <Image Source="Assets/Start.png" HorizontalAlignment="Center" Width="400" Height="60" Panel.ZIndex="4"  />
-        </Button>
-
-        <Button x:Name="SpNaam" Click="SpNaam_Click" Content="Voeg Speler toe"   HorizontalAlignment="Left" Margin="756,699,0,0" VerticalAlignment="Top" Width="400" Height="70" Panel.ZIndex="4" 
+            <Button x:Name="SpNaam" Click="SpNaam_Click" Content="Voeg Speler toe"   HorizontalAlignment="Left" Margin="756,699,0,0" VerticalAlignment="Top" Width="400" Height="70" Panel.ZIndex="4" 
                 Foreground="#FFFBFBFB" Background="#FF6AE64E" FontSize="25px" FontFamily="Tw Cen MT Condensed Extra Bold" />
-        <Button x:Name="SpNaam1" Click="SpNaam1_Click" Content="Voeg Speler toe"   HorizontalAlignment="Left" Margin="756,699,0,0" VerticalAlignment="Top" Width="400" Height="70" Panel.ZIndex="4" 
+            <Button x:Name="SpNaam1" Click="SpNaam1_Click" Content="Voeg Speler toe"   HorizontalAlignment="Left" Margin="756,699,0,0" VerticalAlignment="Top" Width="400" Height="70" Panel.ZIndex="4" 
                 Foreground="#FFFBFBFB" Background="#FF6AE64E" FontSize="25px" FontFamily="Tw Cen MT Condensed Extra Bold" />
 
 
-        <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="100"  Margin="756,599,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="400" Panel.ZIndex="4" Background="#FFA6A7AE"/>
-        <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="100"  Margin="756,599,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="400" Panel.ZIndex="3" Background="#FFA6A7AE"/>
+            <TextBox x:Name="TextBox1" HorizontalAlignment="Left" Height="100"  Margin="756,599,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="400" Panel.ZIndex="4" Background="#FFA6A7AE"/>
+            <TextBox x:Name="TextBox2" HorizontalAlignment="Left" Height="100"  Margin="756,599,0,0" TextWrapping="Wrap" Text=""  VerticalAlignment="Top" Width="400" Panel.ZIndex="3" Background="#FFA6A7AE"/>
 
 
-        <TextBlock x:Name="TextBlock2" Margin="1444,494,68,338" TextWrapping="Wrap" Text="Speler 1 "  Width="400" Panel.ZIndex="4"
+            <TextBlock x:Name="TextBlock2" Margin="1444,439,68,393" TextWrapping="Wrap" Text="Speler 1 "  Width="400" Panel.ZIndex="4"
                  Foreground="#FFFBFBFB" Background="#FF4E9AE6" FontSize="75px" FontFamily="Tw Cen MT Condensed Extra Bold"  />
 
-        <TextBlock x:Name="TextBlock3" Margin="1444,656,68,176" TextWrapping="Wrap" Text="Speler 2 "  Width="400" Panel.ZIndex="4"
+            <TextBlock x:Name="TextBlock3" Margin="1444,656,68,176" TextWrapping="Wrap" Text="Speler 2 "  Width="400" Panel.ZIndex="4"
                  Foreground="#FFFBFBFB" Background="#FFE64E4E" FontSize="75px" FontFamily="Tw Cen MT Condensed Extra Bold"  />
 
-        <TextBlock x:Name="TextBlock1" HorizontalAlignment="Left" Height="39" Margin="756,560,0,0" TextWrapping="Wrap" Text="Vul hier onder uw naam in: "  VerticalAlignment="Top" Width="400" Panel.ZIndex="4" 
+            <TextBlock x:Name="TextBlock1" HorizontalAlignment="Left" Height="39" Margin="756,560,0,0" TextWrapping="Wrap" Text="Vul hier onder uw naam in: "  VerticalAlignment="Top" Width="400" Panel.ZIndex="4" 
                    Foreground="#FFFBFBFB" Background="#FF333333" FontSize="25" FontFamily="Tw Cen MT Condensed Extra Bold" TextAlignment="Center" />
-
-
-        <Grid  x:Name="GameGrid" Width="1920" Height="1080" Panel.ZIndex="2" Margin="0,0,-8,-31" Grid.RowSpan="2" >
         </Grid>
 
-        <Grid x:Name="UiMenu"  Height="1080"  Width="1920"   >
+        <Grid  x:Name="GameGrid" Width="1920" Height="1080" Panel.ZIndex="2" Margin="0,0,-8,-31" >
+
+        </Grid>
+
+        <Grid x:Name="InGame"  Height="1080"  Width="1920"   >
+
+            <TextBlock x:Name="WinBlock" Margin="760,571,760,304" Text="Heeft Gewonnen !"  TextWrapping="Wrap"  Width="400" Panel.ZIndex="3"
+                 Foreground="#FFFBFBFB" Background="#FF55E62A" TextAlignment="Center" FontSize="69px" FontFamily="Tw Cen MT Condensed Extra Bold"  />
+            <TextBlock x:Name="DisplayNm3" FontSize="100" Margin="760,416,760,509" Foreground="White" Background="#FF55E62A" Panel.ZIndex="4"  
+                       FontFamily="Tw Cen MT Condensed Extra Bold" TextAlignment="Center" />
+            <TextBlock x:Name="WinSc" Panel.ZIndex="2"  >
+                <TextBlock.Background>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="#FFF58989" Offset="0"/>
+                        <GradientStop Color="#FF50DAF0" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.Background>
+
+            </TextBlock>
+            <Button x:Name="Home" Click="Home_Click" Content="Verder" Width="400" VerticalContentAlignment="Center" HorizontalContentAlignment="Center"
+                    Foreground="White" Background="#FF0A82EC" Panel.ZIndex="4" FontSize="69" FontFamily="Tw Cen MT Condensed Extra Bold" Margin="760,872,760,76" BorderBrush="White"/>
 
             <Image x:Name="Ui" Source="Assets/Ui2.png" Panel.ZIndex="2" Stretch="UniformToFill"  />
 
@@ -47,8 +64,8 @@
             </Button>
 
 
-            <Button x:Name = "StopButton" Click="StopButton_Click" Width="400" Height="60"  Panel.ZIndex="3" Margin="564,944,956,76" Background="#FF333333">
-                <Image Source="Assets/Stop.png" HorizontalAlignment="Center"  Width="400" Stretch="Fill"    />
+            <Button x:Name = "StopButton" Click="StopButton_Click" Width="400" Height="60"  Panel.ZIndex="4" Margin="564,944,956,76" Background="#FF333333">
+                <Image Source="Assets/Stop.png" HorizontalAlignment="Center"  Width="400" Height="60" />
             </Button>
 
             <Button x:Name="Reset" Click="Reset_Click"  Width="400" Height="60"   Panel.ZIndex="3" Margin="0,944,1520,76" Background="#FF333333">
@@ -73,11 +90,42 @@
 
         </Grid>
 
-        <Grid x:Name="HighScore">
-            <Button x:Name="Score" Width="400" Height="60" Panel.ZIndex="4">
-                
+        <Grid x:Name="HighScore" Panel.ZIndex="3" >
+            <Image x:Name="HBack" Source="Assets\High.png" Panel.ZIndex="4" Stretch="UniformToFill"></Image>
+            <Button x:Name="HScore" Click="HScore_Click" Content="ScoreBord"  Margin="757,420,755,0" VerticalAlignment="Top" Width="398" Height="70"  
+              BorderThickness="1"  Foreground="#FFFBFBFB" Background="#FF565B55"  FontSize="50px" FontFamily="Tw Cen MT Condensed Extra Bold" BorderBrush="White" >
             </Button>
+
+            <Button x:Name="Back" Click="Back_Click" Content="Terug"  Panel.ZIndex="4" 
+                    BorderThickness="1"  Foreground="#FFFBFBFB" Background="#FF06589C"  FontSize="50px" FontFamily="Tw Cen MT Condensed Extra Bold" BorderBrush="White" Margin="0,0,1512,918">
+
+            </Button>
+
+
+
+            <TextBlock x:Name="TopPanel" Text="Top Scores"  TextAlignment="Center" Panel.ZIndex="4" Background="#FF06589C" Foreground="AliceBlue" Height="121" VerticalAlignment="Bottom" FontSize="50" 
+                       FontFamily="Tw Cen MT Condensed Extra Bold" Padding="20" Margin="706,0,711,910" OpacityMask="#FFDC0C0C" />
+
+
+            
+
+            <ListBox x:Name="ScoreList" Panel.ZIndex="4" Margin="706,105,711,0"  Width="495" BorderBrush="#FF0740EA" Foreground="#FFFBFBFB"
+                     FontFamily="Tw Cen MT Condensed Extra Bold" FontSize="50" FontStretch="Condensed" HorizontalAlignment="Center" Opacity="0.7" >
+                <ListBox.Background>
+                    <LinearGradientBrush EndPoint="0.5,0" StartPoint="0.5,1">
+                        <GradientStop Color="Black" Offset="0"/>
+                        <GradientStop Color="#FF4A17D3" Offset="1"/>
+                    </LinearGradientBrush>
+                </ListBox.Background>
+
+
+            </ListBox>
+
+
+
+
         </Grid>
+
 
 
 

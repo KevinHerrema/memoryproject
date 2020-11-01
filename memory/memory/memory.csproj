@@ -118,7 +118,9 @@
   <ItemGroup>
     <Resource Include="Assets\Load.png" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Resource Include="Assets\High.png" />
+  </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Kaart_1.tif" />
     <Resource Include="images\Kaart_4.tif" />
@@ -133,6 +135,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="images\Achterkant.tif" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Assets\Test.mp3" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

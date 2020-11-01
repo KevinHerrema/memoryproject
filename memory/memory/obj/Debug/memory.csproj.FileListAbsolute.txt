@@ -58,3 +58,4 @@ D:\Memory\memory\memory\obj\Debug\memory.csproj.GenerateResource.cache
 D:\Memory\memory\memory\obj\Debug\memory.csproj.CoreCompileInputs.cache
 D:\Memory\memory\memory\obj\Debug\memory.exe
 D:\Memory\memory\memory\obj\Debug\memory.pdb
+D:\Memory\memory\memory\obj\Debug\memory_Content.g.cs

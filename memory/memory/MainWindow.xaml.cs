@@ -1,7 +1,9 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using System.Media;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -19,9 +21,7 @@ using System.Windows.Threading;
 
 namespace memory
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
+   
     public partial class MainWindow : Window
     {
         int totaalkaarten = 16;
@@ -51,63 +51,78 @@ namespace memory
         List<ImageSource> imagelist = new List<ImageSource>();
         List<int> positie = new List<int>();
 
-
         string Naam1;
         string Naam2;
+        int Snum;
 
-
+        //MediaPlayer Test = new MediaPlayer();
+        //Test.Open(new Uri(@"D:\Soda.mp3"));
+        //Test.Play();
 
         public MainWindow()
         {
             InitializeComponent();
             InitializeMenuGrid();
             InitializeGameGrid(Rows + 1, Cols);
-
+            Score();
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             random1 = randomnr();
             plaatjes = plaatjeslist();
-            
+
             kaartnmr = checkpositie();
+
             
         }
 
         private void StartButton_Click(object sender, RoutedEventArgs e) //start button
         {
+            
+            //opstart items 
             Pkleur();
             random1 = randomnr();
             plaatjes = plaatjeslist();
             kaartnmr = checkpositie();
             addplaatjes(Rows, Cols);
-
+            totaalkaarten = 16;
+            PPlayer1 = 0;
+            PPlayer2 = 0;
+            beurtPlayer1 = true;
+            //buttons
             StartButton.Visibility = Visibility.Hidden;
             StopButton.Visibility = Visibility.Visible;
             GameGrid.Visibility = Visibility.Visible;
-            
+            SpNaam.Visibility = Visibility.Hidden;
+            SpNaam1.Visibility = Visibility.Hidden;
             Back1.Visibility = Visibility.Hidden;
             Ui.Visibility = Visibility.Visible;
             Reset.Visibility = Visibility.Visible;
             Save.Visibility = Visibility.Visible;
             Load.Visibility = Visibility.Visible;
+            HScore.Visibility = Visibility.Hidden;
 
+            //text vakken
             TextBlock3.Visibility = Visibility.Hidden;
             TextBlock2.Visibility = Visibility.Hidden;
             TextBlock1.Visibility = Visibility.Hidden;
             TextBox1.Visibility = Visibility.Hidden;
             TextBox2.Visibility = Visibility.Hidden;
-            SpNaam.Visibility = Visibility.Hidden;
-            SpNaam1.Visibility = Visibility.Hidden;
             Ui.Visibility = Visibility.Visible;
+            StartMenu.Visibility = Visibility.Hidden;
+
         }
 
         private void StopButton_Click(object sender, RoutedEventArgs e) //stop button
         {
+            //opstart
             Array.Clear(random2, 0, random2.Length);
             positie.Clear();
             imagelist.Clear();
             cleargame();
             PPlayer1 = 0;
             PPlayer2 = 0;
+
+            //buttons
             StopButton.Visibility = Visibility.Hidden;
             StartButton.Visibility = Visibility.Visible;
             GameGrid.Visibility = Visibility.Hidden;
@@ -117,12 +132,26 @@ namespace memory
             Reset.Visibility = Visibility.Hidden;
             Load.Visibility = Visibility.Hidden;
             Save.Visibility = Visibility.Hidden;
-            TextBlock3.Visibility = Visibility.Visible;
-            TextBlock2.Visibility = Visibility.Visible;
-            TextBlock1.Visibility = Visibility.Visible;
+            
+
+            //textvakken
+            StartMenu.Visibility = Visibility.Visible;
+            StartButton.Visibility = Visibility.Hidden;
+            SpNaam.Visibility = Visibility.Visible;
             TextBox1.Visibility = Visibility.Visible;
             TextBox2.Visibility = Visibility.Visible;
-            StartButton.Visibility = Visibility.Hidden;
+            TextBlock1.Visibility = Visibility.Visible;
+            TextBlock2.Visibility = Visibility.Visible;
+            TextBlock3.Visibility = Visibility.Visible;
+
+            HScore.Visibility = Visibility.Visible;
+            P1.Visibility = Visibility.Hidden;
+            P2.Visibility = Visibility.Hidden;
+            DisplayNm1.Visibility = Visibility.Hidden;
+            DisplayNm2.Visibility = Visibility.Hidden;
+            
+
+
         }
 
         private async void Reset_Click(object sender, RoutedEventArgs e)
@@ -138,12 +167,13 @@ namespace memory
             cleargame();
             PPlayer1 = 0;
             PPlayer2 = 0;
-
+            totaalkaarten = 16;
+            beurtPlayer1 = true;
             random1 = randomnr();
             plaatjes = plaatjeslist();
             kaartnmr = checkpositie();
             addplaatjes(Rows, Cols);
-
+            Pkleur();
             Reset.Visibility = Visibility.Visible;
             GameGrid.Visibility = Visibility.Visible;
 
@@ -156,39 +186,92 @@ namespace memory
             StopButton.Visibility = Visibility.Hidden;
             GameGrid.Visibility = Visibility.Hidden;
             Ui.Visibility = Visibility.Hidden;
-           
+
             Reset.Visibility = Visibility.Hidden;
             Load.Visibility = Visibility.Hidden;
             Save.Visibility = Visibility.Hidden;
             SpNaam1.Visibility = Visibility.Hidden;
             StartButton.Visibility = Visibility.Hidden;
-
-
+            HBack.Visibility = Visibility.Hidden;
+            ScoreList.Visibility = Visibility.Hidden;
+            TopPanel.Visibility = Visibility.Hidden;
+            P1.Visibility = Visibility.Hidden;
+            P2.Visibility = Visibility.Hidden;
+            Back.Visibility = Visibility.Hidden;
+           
+            WinBlock.Visibility = Visibility.Hidden;
+            
+            DisplayNm3.Visibility = Visibility.Hidden;
+            WinSc.Visibility = Visibility.Hidden;
+            Home.Visibility = Visibility.Hidden;
 
         }
-              
 
-        private void SpNaam_Click(object sender, RoutedEventArgs e) //uhm ja misschien effe save files fixen
+
+        private void SpNaam_Click(object sender, RoutedEventArgs e) 
         {
             TextBlock2.Visibility = Visibility.Hidden;
             TextBox1.Visibility = Visibility.Hidden;
             SpNaam.Visibility = Visibility.Hidden;
             SpNaam1.Visibility = Visibility.Visible;
+            StartButton.Visibility = Visibility.Hidden;
+            TextBox2.Visibility = Visibility.Visible;
+            
             Naam1 = TextBox1.Text;
             
-
-
-
         }
 
+        private void Home_Click(object sender, RoutedEventArgs e)
+        {
+            Array.Clear(random2, 0, random2.Length);
+            positie.Clear();
+            imagelist.Clear();
+            cleargame();
+            PPlayer1 = 0;
+            PPlayer2 = 0;
+
+            //buttons
+            StopButton.Visibility = Visibility.Hidden;
+            StartButton.Visibility = Visibility.Visible;
+            GameGrid.Visibility = Visibility.Hidden;
+            Ui.Visibility = Visibility.Hidden;
+            Back1.Visibility = Visibility.Visible;
+            Ui.Visibility = Visibility.Hidden;
+            Reset.Visibility = Visibility.Hidden;
+            Load.Visibility = Visibility.Hidden;
+            Save.Visibility = Visibility.Hidden;
+
+
+            //textvakken
+            StartMenu.Visibility = Visibility.Visible;
+            StartButton.Visibility = Visibility.Hidden;
+            SpNaam.Visibility = Visibility.Visible;
+            TextBox1.Visibility = Visibility.Visible;
+            TextBox2.Visibility = Visibility.Visible;
+            TextBlock1.Visibility = Visibility.Visible;
+            TextBlock2.Visibility = Visibility.Visible;
+            TextBlock3.Visibility = Visibility.Visible;
+
+            HScore.Visibility = Visibility.Visible;
+            P1.Visibility = Visibility.Hidden;
+            P2.Visibility = Visibility.Hidden;
+            DisplayNm1.Visibility = Visibility.Hidden;
+            DisplayNm2.Visibility = Visibility.Hidden;
+
+            WinBlock.Visibility = Visibility.Hidden;
+            WinSc.Visibility = Visibility.Hidden;
+            DisplayNm3.Visibility = Visibility.Hidden;
+            Home.Visibility = Visibility.Hidden;
+        }
 
         private void SpNaam1_Click(object sender, RoutedEventArgs e)
         {
             TextBlock3.Visibility = Visibility.Hidden;
             TextBlock1.Visibility = Visibility.Hidden;
             TextBox2.Visibility = Visibility.Hidden;
+            
             SpNaam1.Visibility = Visibility.Hidden;
-                        
+
             Naam2 = TextBox2.Text;
             StartButton.Visibility = Visibility.Visible;
         }
@@ -211,13 +294,78 @@ namespace memory
                 DisplayNm1.Visibility = Visibility.Hidden;
                 DisplayNm2.Visibility = Visibility.Visible;
             }
-           
+
+        }
+
+        private void HScore_Click(object sender, RoutedEventArgs e) //laad score bord zien
+        {
+
+            HBack.Visibility = Visibility.Visible;
+            StartMenu.Visibility = Visibility.Hidden;
+            StartButton.Visibility = Visibility.Hidden;
+            ScoreList.Visibility = Visibility.Visible;
+
+            
+            Back.Visibility = Visibility.Visible;
+            TopPanel.Visibility = Visibility.Visible;
+        }
+
+        private void Score() //voert score en namen in het bord
+        {
+            string line;
+            List<string> scorenaamen = new List<string>();
+            List<string> scoredata = new List<string>();
+            List<int> scorelist = new List<int>();
+            using (StreamReader reader = new StreamReader(@"D:\score.sav"))
+            {
+                while ((line = reader.ReadLine()) != null)
+                {
+                    scoredata.Add(line);
+                }
+                for (int i = 0; i < 10; i++)
+                {
+                    scorelist.Add(Convert.ToInt32(scoredata[i + 10]));
+                }
+                for (int i = 0; i < 10; i++)
+                {
+                    scorenaamen.Add(scoredata[i]);
+                }
+
+            }
+            for (int i = 0; i < 10; i++)
+            {
+                Snum = i + 1;
+                ScoreList.Items.Add(Snum + ". " + scorenaamen[i] + " : " + scorelist[i]);
+
+            }
         }
        
 
+        private void Back_Click(object sender, RoutedEventArgs e)
+        {
+            HBack.Visibility = Visibility.Hidden;
+            ScoreList.Visibility = Visibility.Hidden;
+            Back.Visibility = Visibility.Hidden;
+            StartMenu.Visibility = Visibility.Visible;
+            HScore.Visibility = Visibility.Visible;
+            TopPanel.Visibility = Visibility.Hidden;
+
+            
+            StartMenu.Visibility = Visibility.Visible;
+            StartButton.Visibility = Visibility.Hidden;
+            SpNaam.Visibility = Visibility.Visible;
+            SpNaam1.Visibility = Visibility.Hidden;
+            TextBox1.Visibility = Visibility.Visible;
+            TextBox2.Visibility = Visibility.Hidden;
+            TextBlock1.Visibility = Visibility.Visible;
+            TextBlock2.Visibility = Visibility.Visible;
+            TextBlock3.Visibility = Visibility.Visible;
 
 
-
+        }
+        //muziek player
+        
+       
 
 
         private void cleargame()
@@ -479,13 +627,101 @@ namespace memory
             }
             if (totaalkaarten == 0)// als er geen kaarten meer over zijn stop het spel
             {
-                MessageBox.Show("score van" + "speler 1 " + "=" + PPlayer1);// laat de scores van beide spelers zien
-                MessageBox.Show("score van " + "speler 2 " + "=" + PPlayer2);
+                //MessageBox.Show("score van" + Naam1 + "=" + PPlayer1);// laat de scores van beide spelers zien
+                //MessageBox.Show("score van " + Naam2 + "=" + PPlayer2);
+                
+                DisplayNm3.Visibility = Visibility.Visible;
+                WinSc.Visibility = Visibility.Visible;
+
+                
+
+                if (PPlayer1 > PPlayer2 )
+                {
+                    WinBlock.Visibility = Visibility.Visible;
+                    DisplayNm3.Text = Naam1;
+                }
+                if (PPlayer2 > PPlayer1)
+                {
+                    WinBlock.Visibility = Visibility.Visible;
+                    DisplayNm3.Text = Naam2;
+                }
+                else 
+                {
+                    WinBlock.Visibility = Visibility.Hidden;
+                    DisplayNm3.Text = "Gelijkspel";
+                    
+                }
+                Home.Visibility = Visibility.Visible;
+                StopButton.Visibility = Visibility.Visible;
+                P1.Visibility = Visibility.Hidden;
+                P2.Visibility = Visibility.Hidden;
+                DisplayNm1.Visibility = Visibility.Hidden;
+                DisplayNm2.Visibility = Visibility.Hidden;
+
+
                 //reset alle waardes en ga terug naar het hoofd menu
                 Array.Clear(random2, 0, random2.Length);
                 positie.Clear();
                 imagelist.Clear();
                 cleargame();
+                string line;
+                List<string> scorenaamen = new List<string>();
+                List<string> scoredata = new List<string>();
+                List<int> scorelist = new List<int>();
+                using (StreamReader reader = new StreamReader(@"D:\score.sav"))
+                {
+                    while ((line = reader.ReadLine()) != null)
+                    {
+                        scoredata.Add(line);
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        scorelist.Add(Convert.ToInt32(scoredata[i + 10]));
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        scorenaamen.Add(scoredata[i]);
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        if (scorelist[i] < PPlayer1)
+                        {
+                            scorelist.Insert(i, PPlayer1);
+                            scorenaamen.Insert(i, Naam1);
+                            break;
+                        }
+
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        if (scorelist[i] < PPlayer2)
+                        {
+                            scorelist.Insert(i, PPlayer2);
+                            scorenaamen.Insert(i, Naam2);
+                            break;
+                        }
+
+                    }
+                    for (int i = 0; i < 2; i++)
+                        if (scorelist.Count > 10)
+                        {
+                            scorelist.RemoveAt(10);
+                            scorenaamen.RemoveAt(10);
+                        }
+
+                }
+                using (var writer = new StreamWriter(@"D:\score.sav"))
+                {
+                    for (int i = 0; i < 10; i++)
+                    {
+                        writer.WriteLine(scorenaamen[i]);
+                    }
+                    for (int i = 0; i < 10; i++)
+                    {
+                        writer.WriteLine(scorelist[i]);
+                    }
+
+                }
                 StopButton.Visibility = Visibility.Hidden;
                 StartButton.Visibility = Visibility.Visible;
                 GameGrid.Visibility = Visibility.Hidden;
@@ -623,8 +859,7 @@ namespace memory
 
         }
 
-
-
+        
     }
 
 
