@@ -64,7 +64,7 @@ namespace memory
             InitializeComponent();
             InitializeMenuGrid();
             InitializeGameGrid(Rows + 1, Cols);
-            Score();
+           
             timer.Interval = TimeSpan.FromSeconds(1);
             timer.Tick += timer_Tick;
             random1 = randomnr();
@@ -298,7 +298,14 @@ namespace memory
         }
 
         private void HScore_Click(object sender, RoutedEventArgs e) //laad score bord zien
-        {
+        {   string line;
+            List<string> scorenaamen = new List<string>();
+            List<string> scoredata = new List<string>();
+            List<int> scorelist = new List<int>();
+
+            scorenaamen.Clear();
+            scoredata.Clear();
+            scorelist.Clear();
 
             HBack.Visibility = Visibility.Visible;
             StartMenu.Visibility = Visibility.Hidden;
@@ -308,14 +315,14 @@ namespace memory
             
             Back.Visibility = Visibility.Visible;
             TopPanel.Visibility = Visibility.Visible;
-        }
 
-        private void Score() //voert score en namen in het bord
-        {
-            string line;
-            List<string> scorenaamen = new List<string>();
-            List<string> scoredata = new List<string>();
-            List<int> scorelist = new List<int>();
+            for (int i = 0; i < 10; i++)
+            {
+                Snum = i + 1;
+                ScoreList.Items.Clear();
+
+            }
+
             using (StreamReader reader = new StreamReader(@"D:\score.sav"))
             {
                 while ((line = reader.ReadLine()) != null)
@@ -336,9 +343,11 @@ namespace memory
             {
                 Snum = i + 1;
                 ScoreList.Items.Add(Snum + ". " + scorenaamen[i] + " : " + scorelist[i]);
-
+                
             }
         }
+
+       
        
 
         private void Back_Click(object sender, RoutedEventArgs e)
