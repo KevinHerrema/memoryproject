@@ -514,7 +514,7 @@ namespace memory
         /// maakt een array aan random nummers aan die als index worden gebruikt voor het husselen van de kaarten
         /// </summary>
         /// <returns>random array</returns>
-        private int[] randomnr()
+        public int[] randomnr()
         {
 
             int nummer1;// het nummer dat getest word

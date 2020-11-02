@@ -1,0 +1,17 @@
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTest.TestAdapter.dll
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.Interface.dll
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\Microsoft.VisualStudio.TestPlatform.MSTestAdapter.PlatformServices.dll
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\test.dll
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\test.pdb
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\memory.exe
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.dll
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\memory.pdb
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\memory.exe.config
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.xml
+C:\Users\kevin\Desktop\memory\memory\test\bin\Debug\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.xml
+C:\Users\kevin\Desktop\memory\memory\test\obj\Debug\test.csprojAssemblyReference.cache
+C:\Users\kevin\Desktop\memory\memory\test\obj\Debug\test.csproj.CoreCompileInputs.cache
+C:\Users\kevin\Desktop\memory\memory\test\obj\Debug\test.csproj.CopyComplete
+C:\Users\kevin\Desktop\memory\memory\test\obj\Debug\test.dll
+C:\Users\kevin\Desktop\memory\memory\test\obj\Debug\test.pdb
